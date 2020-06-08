@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bus Companies</title>
+</head>
+<body>
+    <h1>Bus Companies</h1>
+    <ul>
+        {% for bus in buses  %}
+        <li><strong>{{ bus.name }}</strong> - {{ bus.head_office }} - {{ bus.staff_count }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
