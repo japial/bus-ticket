@@ -1,15 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Bus Companies</title>
-</head>
-<body>
-    <h1>Bus Companies</h1>
-    <ul>
-        {% for bus in buses  %}
-        <li><strong>{{ bus.name }}</strong> - {{ bus.head_office }} - {{ bus.staff_count }}</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "layouts/base.html" %}
+
+{% block title %}List of Buses{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 mx-auto py-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h1>Bus Companies</h1>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Bus Company</th>
+                            <th>Head Office</th>
+                            <th>Staff</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for bus in buses %}
+                            <tr>
+                                <td>{{ bus.name }}</td>
+                                <td>{{ bus.head_office }}</td>
+                                <td>{{ bus.staff_count }}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="/buses/update/{{ bus.id }}" class="btn btn-warning">Edit</a>
+                                        <a class="btn btn-danger" href="#">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="4">No Bus Company</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
