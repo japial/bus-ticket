@@ -7,7 +7,7 @@
         <div class="col-md-8 mx-auto py-4">
             <div class="card">
                 <div class="card-header text-center">
-                    <h1>Bus Companies</h1>
+                    <h6>Bus Companies</h6>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
@@ -16,7 +16,7 @@
                             <th>Bus Company</th>
                             <th>Head Office</th>
                             <th>Staff</th>
-                            <th>Action</th>
+                            <th><a href="/buses/create" class="btn btn-primary">Create</a></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -28,7 +28,7 @@
                                 <td>
                                     <div class="btn-group">
                                         <a href="/buses/update/{{ bus.id }}" class="btn btn-warning">Edit</a>
-                                        <a class="btn btn-danger" href="#">Delete</a>
+                                        <a class="btn btn-danger" href="/buses/delete/{{ bus.id }}">Delete</a>
                                     </div>
                                 </td>
                             </tr>

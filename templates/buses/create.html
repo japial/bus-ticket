@@ -1,33 +1,38 @@
 {% extends "layouts/base.html" %}
 
-{% block title %}Update Bus Company{% endblock %}
+{% block title %}Create Bus{% endblock %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-8 mx-auto py-4">
             <div class="card">
                 <div class="card-header text-center">
-                    <h1>Bus {{bus.name}}</h1>
+                    <h6>New Bus Company</h6>
                 </div>
                 <div class="card-body">
                     <form method="POST">
                         {% csrf_token %}
                         <div class="form-group">
                             <label>Company</label>
-                            <input type="text" name="name" value="{{ bus.name }}" class="form-control">
+                            <input type="text" name="name"  class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Head Office</label>
-                            <input type="text" name="head_office" value="{{ bus.head_office }}" class="form-control">
+                            <input type="text" name="head_office"  class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Staff</label>
-                            <input type="text" name="staff_count" value="{{ bus.staff_count }}" class="form-control">
+                            <input type="text" name="staff_count" class="form-control">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Save</button>
                         </div>
                     </form>
+                    {% if form.errors %}
+                      <div class="alert alert-danger">
+                         {{ form.errors }}
+                      </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

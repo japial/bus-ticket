@@ -1,0 +1,23 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Update Bus Company{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 mx-auto py-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h6>Are you realy want to Delete {{bus.name}} ?</h6>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

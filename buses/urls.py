@@ -19,6 +19,8 @@ from django.urls import path
 from buses import views
 
 urlpatterns = [
-    path('', views.index),
-    path('update/<int:pk>', views.update),
+    path('', views.CompanyList.as_view()),
+    path('create', views.CompanyCreate.as_view()),
+    path('update/<int:pk>', views.CompanyUpdate.as_view()),
+    path('delete/<int:pk>', views.CompanyDelete.as_view()),
 ]

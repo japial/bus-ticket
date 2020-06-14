@@ -1,20 +1,34 @@
-from django.http import HttpRequest
-from django.shortcuts import render
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from buses.models import BusCompany
 
 
-def index(request: HttpRequest):
-    buses = BusCompany.objects.all().order_by('name')
-    return render(request, 'buses/index.html', {'buses': buses})
+class CompanyList(ListView):
+    model = BusCompany
+    template_name = 'buses/index.html'
+    context_object_name = 'buses'
 
 
-def update(request: HttpRequest, pk):
-    bus = BusCompany.objects.get(id=pk)
-    if request.method == 'POST':
-        bus.name = request.POST.get('name')
-        bus.head_office = request.POST.get('head_office')
-        bus.staff_count = request.POST.get('staff_count')
-        bus.save()
+class CompanyCreate(CreateView):
+    model = BusCompany
+    template_name = 'buses/create.html'
+    fields = ('name', 'head_office', 'staff_count')
+    success_url = '/buses'
 
-    return render(request, 'buses/update.html', {'bus': bus})
+
+class CompanyUpdate(UpdateView):
+    model = BusCompany
+    template_name = 'buses/update.html'
+    fields = ('name', 'head_office', 'staff_count')
+    success_url = '/buses'
+    context_object_name = 'bus'
+
+
+class CompanyDelete(DeleteView):
+    model = BusCompany
+    template_name = 'buses/delete.html'
+    success_url = '/buses'
+    context_object_name = 'bus'
+
+
+
