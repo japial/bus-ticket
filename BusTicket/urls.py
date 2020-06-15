@@ -20,6 +20,7 @@ from BusTicket import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('', views.index),
     path('buses/', include('buses.urls')),
 ]
