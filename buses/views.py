@@ -1,13 +1,16 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from buses.models import BusCompany
 
 
-class CompanyList(ListView):
+class CompanyList(UserPassesTestMixin, ListView):
     model = BusCompany
     template_name = 'buses/index.html'
     context_object_name = 'buses'
+
+    def test_func(self):
+        return self.request.user.has_perm('buses.view_buscompany')
 
 
 class CompanyCreate(UserPassesTestMixin, CreateView):
@@ -39,6 +42,7 @@ class CompanyDelete(UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         return self.request.user.has_perm('buses.delete_buscompany')
+
 
 
 
